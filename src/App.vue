@@ -1,23 +1,20 @@
 <script setup>
 import{ref,reactive} from 'vue';
-const colorName= ref("None");
+const favColors= ref([]);
 
-function getColor(){
-  return {
-    backgroundColor: colorName.value,
-  }
-}
 </script>
 
 <template>
-    <section class="mx-auto container">
+     <section class="mx-auto container">
     <h1 class="text-2xl mb-10">Vue Form</h1>
-    <p class="pb-5">Your Favorite Color:{{ colorName }}</p>
-    <div>
-      Your Favorite Color: 
-      <input class="p-5" v-model="colorName" />
-      <div class="w-32 h-32 mt-10" :style="getColor()"></div>
-    </div>
+    <p class="mb-10">{{ favColors }}</p>
+    Your favorite colors <br/>
+    <label for="red">Red</label>
+    <input class="ml-2 mr-2" type="checkbox" id="red"  v-model="favColors" value="red">
+    <label for="green">Green</label>
+    <input class="ml-2 mr-2" type="checkbox" id="green"  v-model="favColors" value="green">
+    <label for="blue">Blue</label>
+    <input class="ml-2 mr-2" type="checkbox" id="blue"  v-model="favColors" value="blue">
   </section>
 </template>
 
