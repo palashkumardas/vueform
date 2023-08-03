@@ -11,6 +11,11 @@ const displayImage=ref(true)
     <p class="mb-10">{{ displayImage }}</p>
     <label for="">Display Random Image</label>
     <input class="ml-2" type="checkbox" v-model="displayImage" />
+    <p>
+      <input type="radio" name="display" :value="true" v-model="displayImage"/> On<br>
+      <input type="radio" name="display" :value="false" v-model="displayImage"/> Off<br>
+
+    </p>
     <img  
         v-show="displayImage"
         class="mt-10 mx-auto w-[500px]" 
