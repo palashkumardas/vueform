@@ -1,22 +1,44 @@
 <script setup>
 import{ref,reactive} from 'vue';
-const colorName= ref("None");
+const saarcCountries = reactive([
+  { name: "Bangladesh", capital: "Dhaka" },
+  { name: "Nepal", capital: "Kathmandu" },
+  { name: "Bhutan", capital: "Thimphu" },
+  { name: "Sri Lanka", capital: "Colombo" },
+  { name: "India", capital: "New Delhi" },
+  { name: "Pakistan", capital: "Islamabad" },
+  { name: "Maldives", capital: "Male" }
+])
 
-function getColor(){
-  return {
-    backgroundColor: colorName.value,
-  }
+const capitals = ["Dhaka", "Kathmandu", "Thimphu", "Colombo", "New Delhi", "Islamabad", "Male"]
+
+function getRandomCapitals(){
+  return capitals;
+  //return capitals.sort(()=>Math.random() - 0.5)
+}
+
+function getScore(){
+  let score = 0
+  saarcCountries.forEach(country => {
+    if(country.answer === country.capital){
+      score++
+    }
+  })
+  return score
 }
 </script>
 
 <template>
-    <section class="mx-auto container">
+  <section class="mx-auto container text-left">
     <h1 class="text-2xl mb-10">Vue Form</h1>
-    <p class="pb-5">Your Favorite Color:{{ colorName }}</p>
-    <div>
-      Your Favorite Color: 
-      <input class="p-5" v-model="colorName" />
-      <div class="w-32 h-32 mt-10" :style="getColor()"></div>
+    <p class="mb-10">{{ saarcCountries }}</p>
+    <p>Your Score: {{ getScore() }}</p>
+    <div class="my-5 border border-gray-400 p-5" v-for="(country, index) in saarcCountries" :key="index">
+      <p>What is the capital of {{ country.name }}?</p>
+      <template v-for="capital in capitals" :key="capital.name">
+        <input :name="country.name" type="radio" :value="capital" v-model="country.answer" />
+        <label class="ml-2 mr-2">{{capital}}</label>
+      </template>
     </div>
   </section>
 </template>
