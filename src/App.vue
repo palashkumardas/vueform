@@ -1,24 +1,31 @@
 <script setup>
 import{ref,reactive} from 'vue';
-const colorName= ref("None");
 
-function getColor(){
-  return {
-    backgroundColor: colorName.value,
-  }
-}
+const displayImage=ref(true)
+
 </script>
 
 <template>
-    <section class="mx-auto container">
+   <section class="mx-auto container">
     <h1 class="text-2xl mb-10">Vue Form</h1>
-    <p class="pb-5">Your Favorite Color:{{ colorName }}</p>
-    <div>
-      Your Favorite Color: 
-      <input class="p-5" v-model="colorName" />
-      <div class="w-32 h-32 mt-10" :style="getColor()"></div>
-    </div>
+    <p class="mb-10">{{ displayImage }}</p>
+    <label for="">Display Random Image</label>
+    <input class="ml-2" type="checkbox" v-model="displayImage" />
+    <img  
+        v-show="displayImage"
+        class="mt-10 mx-auto w-[500px]" 
+        :src="`https://source.unsplash.com/random?version=${Math.random()}`"  
+        alt="" 
+     />
+      
+      <!-- <img
+      v-if="displayImage"
+      class="mt-10 mx-auto w-[500px]"
+      :src="`https://source.unsplash.com/random?version=${Math.random()}`"
+      alt=""  /> -->
+
   </section>
+
 </template>
 
 <style scoped>
